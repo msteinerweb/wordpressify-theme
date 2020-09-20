@@ -1,4 +1,4 @@
-const { gulp, series, parallel, dest, src, watch } = require('gulp');
+const { series, dest, src, watch } = require('gulp');
 const babel = require('gulp-babel');
 const beeper = require('beeper');
 const browserSync = require('browser-sync');
@@ -9,12 +9,8 @@ const log = require('fancy-log');
 const fs = require('fs');
 const imagemin = require('gulp-imagemin');
 const inject = require('gulp-inject-string');
-const partialimport = require('postcss-easy-import');
 const plumber = require('gulp-plumber');
 const sass = require('gulp-sass');
-const postCSSMixins = require('postcss-mixins');
-const postcssPresetEnv = require('postcss-preset-env');
-const remoteSrc = require('gulp-remote-src');
 const sourcemaps = require('gulp-sourcemaps');
 const uglify = require('gulp-uglify');
 const zip = require('gulp-vinyl-zip');
@@ -24,42 +20,6 @@ Theme Name
 -------------------------------------------------------------------------------------------------- */
 const themeName = 'wordpressify';
 
-/* -------------------------------------------------------------------------------------------------
-PostCSS Plugins
--------------------------------------------------------------------------------------------------- */
-const pluginsListDev = [
-	partialimport,
-	postCSSMixins,
-	postcssPresetEnv({
-		stage: 0,
-		features: {
-			'nesting-rules': true,
-			'color-mod-function': true,
-			'custom-media': true,
-		},
-	}),
-];
-
-const pluginsListProd = [
-	partialimport,
-	postCSSMixins,
-	postcssPresetEnv({
-		stage: 0,
-		features: {
-			'nesting-rules': true,
-			'color-mod-function': true,
-			'custom-media': true,
-		},
-	}),
-	require('cssnano')({
-		preset: [
-			'default',
-			{
-				discardComments: false,
-			},
-		],
-	}),
-];
 
 /* -------------------------------------------------------------------------------------------------
 Header & Footer JavaScript Boundles
@@ -68,40 +28,6 @@ const headerJS = ['./node_modules/jquery/dist/jquery.js'];
 
 const footerJS = ['./src/assets/js/**'];
 
-/* -------------------------------------------------------------------------------------------------
-Installation Tasks
--------------------------------------------------------------------------------------------------- */
-async function cleanup() {
-	await del(['./build']);
-	await del(['./dist']);
-}
-
-async function downloadWordPress() {
-	await remoteSrc(['latest.zip'], {
-		base: 'https://wordpress.org/',
-	}).pipe(dest('./build/'));
-}
-
-async function unzipWordPress() {
-	return await zip.src('./build/latest.zip').pipe(dest('./build/'));
-}
-
-async function copyConfig() {
-	if (await fs.existsSync('./wp-config.php')) {
-		return src('./wp-config.php')
-			.pipe(inject.after("define( 'DB_COLLATE', '' );", "\ndefine( 'DISABLE_WP_CRON', true );"))
-			.pipe(dest('./build/wordpress'));
-	}
-}
-
-async function installationDone() {
-	await beeper();
-	await log(devServerReady);
-	await log(thankYou);
-}
-
-exports.setup = series(cleanup, downloadWordPress);
-exports.install = series(unzipWordPress, copyConfig, installationDone);
 
 /* -------------------------------------------------------------------------------------------------
 Development Tasks

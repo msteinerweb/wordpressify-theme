@@ -27,7 +27,6 @@
 		"wordpressify": "./installer/index.js"
 	},
 	"scripts": {
-		"install:wordpress": "gulp setup && gulp install",
 		"dev": "gulp dev",
 		"prod": "gulp prod",
 		"fresh-start": "gulp fresh",
@@ -58,16 +57,11 @@
 		"gulp-plumber": "^1.2.1",
 		"gulp-postcss": "^8.0.0",
 		"gulp-remote-src": "^0.4.4",
+		"gulp-sass": "^4.1.0",
 		"gulp-sourcemaps": "^2.6.5",
 		"gulp-uglify": "^3.0.2",
 		"gulp-vinyl-zip": "^2.2.0",
 		"jquery": "^3.4.1",
-		"postcss-easy-import": "^3.0.0",
-		"postcss-mixins": "^6.2.3",
-		"postcss-preset-env": "^6.7.0",
 		"stylelint": "^13.2.0"
-	},
-	"devDependencies": {
-		"gulp-sass": "^4.1.0"
 	}
 }
