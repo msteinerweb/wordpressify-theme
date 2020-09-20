@@ -1,0 +1,9 @@
+<?php // get_template_part('component/social-media-menu'); ?>
+<ul class="social-media-menu menu">
+  <?php if (get_field('facebook_url', 'option')) { ?><li class="menu-item menu-item-facebook"><a href="<?php the_field('facebook_url', 'option'); ?>" target="_blank" rel="nofollow noopener" aria-label="Facebook"><i class="fab fa-facebook-square"></i></a></li><?php } ?>
+  <?php if (get_field('linkedin_url', 'option')) { ?><li class="menu-item menu-item-linkedin"><a href="<?php the_field('linkedin_url', 'option'); ?>" target="_blank" rel="nofollow noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></li><?php } ?>
+  <?php if (get_field('instagram_url', 'option')) { ?><li class="menu-item menu-item-instagram"><a href="<?php the_field('instagram_url', 'option'); ?>" target="_blank" rel="nofollow noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li><?php } ?>
+  <?php if (get_field('youtube_url', 'option')) { ?><li class="menu-item menu-item-youtube"><a href="<?php the_field('youtube_url', 'option'); ?>" target="_blank" rel="nofollow noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li><?php } ?>
+  <?php if (get_field('pinterest_url', 'option')) { ?><li class="menu-item menu-item-pinterest"><a href="<?php the_field('pinterest_url', 'option'); ?>" target="_blank" rel="nofollow noopener" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a></li><?php } ?>
+  <?php if (get_field('twitter_url', 'option')) { ?><li class="menu-item menu-item-twitter"><a href="<?php the_field('twitter_url', 'option'); ?>" target="_blank" rel="nofollow noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li><?php } ?>
+</ul>

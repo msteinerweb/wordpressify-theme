@@ -1,0 +1,38 @@
+/*
+Theme Name: Wordpressify
+Theme URI: https://www.wordpressify.co
+Author: Matt Steiner
+Author URI:
+Description:
+Version: 1.0
+Tags: responsive, clean, minimal, modern, documentation
+*/
+
+
+
+// abstract
+@import "./abstract/functions";
+@import "./abstract/mixins";
+@import "./abstract/variables";
+
+
+// base
+@import "./base/body";
+@import "./base/highlight";
+// @import "./base/scrollbar";
+
+
+// components
+
+
+// layout
+
+
+// pages
+
+
+// themes
+
+
+// vendors
+@import "./vendors/bootstrap";
